@@ -16,7 +16,9 @@ int main(int argc, const char* argv[]) {
         printf("Invalid ELF file\n");
         return 1;
     }
-    MinecraftElfInfo::fromElf(reader);
+    auto info = MinecraftElfInfo::fromElf(reader);
+    printf("Version = %i.%i.%i.%i\n", info.versionMajor, info.versionMinor, info.versionPatch, info.versionRevision);
+    printf("Beta = %s\n", info.isBeta ? "true" : "false");
     close(fd);
 
     return 0;
